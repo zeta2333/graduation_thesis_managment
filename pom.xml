@@ -20,7 +20,7 @@
         <mysql.version>8.0.32</mysql.version>
         <knife4j.version>3.0.3</knife4j.version>
         <jwt.version>0.9.1</jwt.version>
-        <fastjson.version>2.0.21</fastjson.version>
+        <fastjson.version>2.0.26</fastjson.version>
     </properties>
 
     <!--配置dependency-->
@@ -52,8 +52,8 @@
         </dependency>
         <!--fastjson-->
         <dependency>
-            <groupId>com.alibaba</groupId>
-            <artifactId>fastjson</artifactId>
+            <groupId>com.alibaba.fastjson2</groupId>
+            <artifactId>fastjson2</artifactId>
             <version>${fastjson.version}</version>
         </dependency>
         <!-- springboot web模块 -->

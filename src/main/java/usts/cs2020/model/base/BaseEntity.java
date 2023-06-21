@@ -1,4 +1,4 @@
-package usts.cs2020.model;
+package usts.cs2020.model.base;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
