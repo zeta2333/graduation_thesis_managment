@@ -3,6 +3,7 @@ package usts.cs2020.model.system;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import usts.cs2020.model.base.BaseEntity;
 
 /**
  * <p>
@@ -14,7 +15,7 @@ import lombok.Data;
  */
 @Data
 @TableName("sys_administrator")
-public class SysAdministrator {
+public class SysAdministrator extends BaseEntity {
     /**
      * 用户id
      */

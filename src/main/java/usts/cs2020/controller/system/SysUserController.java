@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import usts.cs2020.model.system.SysUser;
-import usts.cs2020.model.vo.SysUserVo;
+import usts.cs2020.model.vo.SysUserQueryVo;
 import usts.cs2020.service.SysUserService;
 import usts.cs2020.utils.encrypt.MD5;
 import usts.cs2020.utils.result.Result;
@@ -35,7 +35,7 @@ public class SysUserController {
     @GetMapping("{current}/{size}")
     public Result index(@PathVariable Long current,
                         @PathVariable Long size,
-                        SysUserVo vo) {
+                        SysUserQueryVo vo) {
         // 创建page对象
         Page<SysUser> pageParam = new Page<>(current, size);
 

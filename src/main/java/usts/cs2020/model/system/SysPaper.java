@@ -17,7 +17,6 @@ import usts.cs2020.model.base.BaseEntity;
 @TableName("sys_paper")
 public class SysPaper extends BaseEntity {
 
-
     /**
      * 论文标题
      */
