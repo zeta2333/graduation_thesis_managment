@@ -50,7 +50,8 @@ public class SysUserController {
         if (!StringUtils.isEmpty(keyword)) {
             wrapper.like(SysUser::getUsername, keyword)
                     .or().like(SysUser::getRealName, keyword)
-                    .or().like(SysUser::getTel, keyword);
+                    .or().like(SysUser::getTel, keyword)
+                    .or().eq(SysUser::getGender, keyword);
         }
         // ge 大于等于
         if (!StringUtils.isEmpty(createTimeBegin)) {
@@ -76,6 +77,7 @@ public class SysUserController {
     @ApiOperation(value = "保存用户")
     @PostMapping("save")
     public Result save(@RequestBody SysUser user) {
+        // 对password做加密后添加到数据库
         user.setPassword(MD5.encrypt(user.getPassword()));
         service.save(user);
         return Result.ok();
@@ -84,7 +86,6 @@ public class SysUserController {
     @ApiOperation(value = "更新用户")
     @PutMapping("update")
     public Result updateById(@RequestBody SysUser user) {
-        user.setPassword(MD5.encrypt(user.getPassword()));
         service.updateById(user);
         return Result.ok();
     }

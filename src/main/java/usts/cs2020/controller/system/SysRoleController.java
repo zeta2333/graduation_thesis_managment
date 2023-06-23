@@ -32,7 +32,7 @@ public class SysRoleController {
     @GetMapping("findAll")
     public Result findAll() {
         List<SysRole> list = sysRoleService.list();
-        return Result.ok(list).message("fuck");
+        return Result.ok(list);
     }
 
     @ApiOperation("分页查询")
