@@ -10,7 +10,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import usts.cs2020.model.system.SysRole;
-import usts.cs2020.model.vo.SysRoleQueryVo;
+import usts.cs2020.model.vo.query.SysRoleQueryVo;
 import usts.cs2020.service.SysRoleService;
 import usts.cs2020.utils.result.Result;
 
@@ -44,10 +44,10 @@ public class SysRoleController {
     ) {
         Page<SysRole> pageParam = new Page<>(current, size);
         LambdaQueryWrapper<SysRole> wrapper = new LambdaQueryWrapper<>();
-        String roleName = vo.getRoleName();
-        System.out.println("roleName = " + roleName);
-        if (!StringUtils.isEmpty(roleName)) {
-            wrapper.like(SysRole::getRoleName, roleName);
+        String keyword = vo.getKeyword();
+        if (!StringUtils.isEmpty(keyword)) {
+            wrapper.like(SysRole::getRoleName, keyword)
+                    .or().like(SysRole::getDescription, keyword);
         }
         IPage<SysRole> pageModel = sysRoleService.page(pageParam, wrapper);
         return Result.ok(pageModel);

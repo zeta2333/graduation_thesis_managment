@@ -1,17 +1,15 @@
 package usts.cs2020.controller.system;
 
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import usts.cs2020.model.system.SysUser;
-import usts.cs2020.model.vo.SysUserQueryVo;
-import usts.cs2020.model.vo.SysUserResVo;
+import usts.cs2020.model.vo.query.SysUserQueryVo;
+import usts.cs2020.model.vo.result.SysUserResVo;
 import usts.cs2020.service.SysUserService;
 import usts.cs2020.utils.encrypt.MD5;
 import usts.cs2020.utils.result.Result;

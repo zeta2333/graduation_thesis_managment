@@ -8,7 +8,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import usts.cs2020.model.system.SysTeacher;
-import usts.cs2020.model.vo.SysTeacherQueryVo;
+import usts.cs2020.model.vo.query.SysTeacherQueryVo;
+import usts.cs2020.model.vo.result.SysTeacherResVo;
 import usts.cs2020.service.SysTeacherService;
 import usts.cs2020.utils.result.Result;
 
@@ -36,7 +37,7 @@ public class SysTeacherController {
         // 创建page对象
         Page<SysTeacher> pageParam = new Page<>(current, size);
         // 条件分页查询
-        IPage<SysTeacher> pageModel = service.queryPageListByCondition(vo,pageParam);
+        IPage<SysTeacherResVo> pageModel = service.queryPageList(vo, pageParam);
         return Result.ok(pageModel);
     }
 

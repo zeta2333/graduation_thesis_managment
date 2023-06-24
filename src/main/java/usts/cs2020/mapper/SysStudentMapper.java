@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
 import usts.cs2020.model.system.SysStudent;
-import usts.cs2020.model.vo.SysStudentQueryVo;
-import usts.cs2020.model.vo.SysStudentResVo;
+import usts.cs2020.model.vo.query.SysStudentQueryVo;
+import usts.cs2020.model.vo.result.SysStudentResVo;
 
 /**
  * <p>

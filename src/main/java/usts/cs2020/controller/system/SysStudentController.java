@@ -8,8 +8,8 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import usts.cs2020.model.system.SysStudent;
-import usts.cs2020.model.vo.SysStudentQueryVo;
-import usts.cs2020.model.vo.SysStudentResVo;
+import usts.cs2020.model.vo.query.SysStudentQueryVo;
+import usts.cs2020.model.vo.result.SysStudentResVo;
 import usts.cs2020.service.SysStudentService;
 import usts.cs2020.utils.result.Result;
 

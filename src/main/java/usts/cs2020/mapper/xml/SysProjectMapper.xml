@@ -2,4 +2,19 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="usts.cs2020.mapper.SysProjectMapper">
 
+    <select id="findPage" resultType="usts.cs2020.model.vo.result.SysProjectResVo">
+        SELECT p.*,
+        u.real_name as teacher_name
+        FROM sys_project p
+        LEFT JOIN sys_teacher t ON p.teacher_id = t.id
+        LEFT JOIN sys_user u ON t.user_id = u.id
+        where 1 = 1
+        <if test="vo.keyword != null and vo.keyword != ''">
+            and (
+            u.real_name like concat('%',#{vo.keyword},'%')
+            or p.project_name like concat('%',#{vo.keyword},'%')
+            or p.description like concat('%',#{vo.keyword},'%')
+            )
+        </if>
+    </select>
 </mapper>

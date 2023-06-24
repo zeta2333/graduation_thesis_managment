@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import usts.cs2020.model.system.SysUser;
-import usts.cs2020.model.vo.SysUserQueryVo;
-import usts.cs2020.model.vo.SysUserResVo;
+import usts.cs2020.model.vo.query.SysUserQueryVo;
+import usts.cs2020.model.vo.result.SysUserResVo;
 
 /**
  * <p>

@@ -1,4 +1,4 @@
-package usts.cs2020.model.vo;
+package usts.cs2020.model.vo.result;
 
 import lombok.Data;
 import usts.cs2020.model.system.SysStudent;

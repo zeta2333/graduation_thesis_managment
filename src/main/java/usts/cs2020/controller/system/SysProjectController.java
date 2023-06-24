@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import usts.cs2020.model.system.SysProject;
+import usts.cs2020.model.vo.query.SysProjectQueryVo;
+import usts.cs2020.model.vo.result.SysProjectResVo;
 import usts.cs2020.service.SysProjectService;
 import usts.cs2020.utils.result.Result;
 
@@ -31,10 +33,11 @@ public class SysProjectController {
     @ApiOperation("分页查询")
     @GetMapping("{current}/{size}")
     public Result index(@PathVariable Long current,
-                        @PathVariable Long size) {
+                        @PathVariable Long size,
+                        SysProjectQueryVo vo) {
         // 创建page对象
         Page<SysProject> pageParam = new Page<>(current, size);
-        IPage<SysProject> pageModel = service.page(pageParam, null);
+        IPage<SysProjectResVo> pageModel = service.queryPage(pageParam, vo);
         return Result.ok(pageModel);
     }
 

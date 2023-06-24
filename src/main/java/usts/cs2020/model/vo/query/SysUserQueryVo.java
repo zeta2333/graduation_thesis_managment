@@ -1,6 +1,6 @@
 //
 //
-package usts.cs2020.model.vo;
+package usts.cs2020.model.vo.query;
 
 
 import lombok.Data;

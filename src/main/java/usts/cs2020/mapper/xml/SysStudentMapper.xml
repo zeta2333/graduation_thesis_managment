@@ -5,20 +5,25 @@
     <!--
     Page<SysStudentResVo> findAndPage(Page<SysStudent> pageParam, SysStudentQueryVo vo);
      -->
-    <select id="findAndPage" resultType="usts.cs2020.model.vo.SysStudentResVo">
+    <select id="findAndPage" resultType="usts.cs2020.model.vo.result.SysStudentResVo">
         SELECT s.*,
         u1.real_name AS student_name,
         sub.subject_name,
-        u2.real_name AS teacher_name
+        u2.real_name AS teacher_name,
+        p.project_name
 
         FROM sys_student s
         LEFT JOIN sys_teacher t ON s.teacher_id = t.id
         LEFT JOIN sys_user u1 ON s.user_id = u1.id
         LEFT JOIN sys_user u2 ON t.user_id = u2.id
         LEFT JOIN sys_subject sub ON s.subject_id = sub.id
+        LEFT JOIN sys_project p ON s.project_id = p.id
         where 1 = 1
         <if test="vo.keyword != null and vo.keyword != ''">
-            and (u1.real_name like concat('%',#{vo.keyword},'%'))
+            and (
+            u1.real_name like concat('%',#{vo.keyword},'%')
+            or sub.subject_name like concat('%',#{vo.keyword},'%')
+            )
         </if>
     </select>
 </mapper>
