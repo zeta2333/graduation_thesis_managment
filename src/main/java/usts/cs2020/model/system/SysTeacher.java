@@ -31,6 +31,6 @@ public class SysTeacher extends BaseEntity {
     /**
      * 职位
      */
-    @TableField("t_rank")
-    private String tRank;
+    @TableField("position")
+    private String position;
 }

@@ -1,16 +1,17 @@
 package usts.cs2020.model.vo;
 
+import lombok.Data;
+import usts.cs2020.model.system.SysStudent;
+
 /**
  * @author Pycro
  * @version 1.0
  * 2023-06-23 5:48 PM
  */
-public class SysStudentInfoVo {
-    private Long id;
-    private String name;
+@Data
+public class SysStudentResVo extends SysStudent {
+    private String studentName;
     private String projectName;
-    private String projectStatus;
-    private String projectScore;
     private String teacherName;
     private String subjectName;
 }

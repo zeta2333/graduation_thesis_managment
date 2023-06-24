@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import usts.cs2020.model.system.SysStudent;
 import usts.cs2020.model.vo.SysStudentQueryVo;
+import usts.cs2020.model.vo.SysStudentResVo;
 import usts.cs2020.service.SysStudentService;
 import usts.cs2020.utils.result.Result;
 
@@ -35,7 +36,7 @@ public class SysStudentController {
                         SysStudentQueryVo vo) {
         // 创建page对象
         Page<SysStudent> pageParam = new Page<>(current, size);
-        IPage<SysStudent> pageModel = service.queryPageListByCondition(vo,pageParam);
+        IPage<SysStudentResVo> pageModel = service.queryPageList(vo, pageParam);
         return Result.ok(pageModel);
     }
 

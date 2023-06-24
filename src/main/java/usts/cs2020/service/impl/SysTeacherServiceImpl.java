@@ -28,7 +28,7 @@ public class SysTeacherServiceImpl extends ServiceImpl<SysTeacherMapper, SysTeac
         LambdaQueryWrapper<SysTeacher> wrapper = new LambdaQueryWrapper<>();
         String keyword = vo.getKeyword();
         if (!StringUtils.isEmpty(keyword)) {
-            wrapper.like(SysTeacher::getTRank, keyword)
+            wrapper.like(SysTeacher::getPosition, keyword)
                     .or().like(SysTeacher::getResearchDirection, keyword);
         }
         return baseMapper.selectPage(pageParam, wrapper);

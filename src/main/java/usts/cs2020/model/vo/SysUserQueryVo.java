@@ -20,7 +20,6 @@ public class SysUserQueryVo implements Serializable {
 	private String keyword;
 	private String createTimeBegin;
 	private String createTimeEnd;
-	private Long roleId;
 
 }
 

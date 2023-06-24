@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import usts.cs2020.model.system.SysStudent;
 import usts.cs2020.model.vo.SysStudentQueryVo;
+import usts.cs2020.model.vo.SysStudentResVo;
 
 /**
  * <p>
@@ -17,5 +18,5 @@ import usts.cs2020.model.vo.SysStudentQueryVo;
 public interface SysStudentService extends IService<SysStudent> {
 
     // 条件分页查询
-    IPage<SysStudent> queryPageListByCondition(SysStudentQueryVo vo, Page<SysStudent> pageParam);
+    IPage<SysStudentResVo> queryPageList(SysStudentQueryVo vo, Page<SysStudent> pageParam);
 }

@@ -25,7 +25,7 @@ import java.util.List;
 @Configuration
 @EnableSwagger2WebMvc
 public class Knife4jConfig {
-    // 访问地址：http://localhost:6815/doc.html
+    // 后端接口访问地址：http://localhost:6815/doc.html
     @Bean
     public Docket adminApiConfig() {
         List<Parameter> pars = new ArrayList<>();

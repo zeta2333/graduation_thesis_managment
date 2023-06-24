@@ -1,7 +1,11 @@
 package usts.cs2020.service;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import usts.cs2020.model.system.SysUser;
+import usts.cs2020.model.vo.SysUserQueryVo;
+import usts.cs2020.model.vo.SysUserResVo;
 
 /**
  * <p>
@@ -13,4 +17,6 @@ import usts.cs2020.model.system.SysUser;
  */
 public interface SysUserService extends IService<SysUser> {
 
+    // 条件分页查询
+    IPage<SysUserResVo> queryPageList(Page<SysUser> pageParam, SysUserQueryVo vo);
 }

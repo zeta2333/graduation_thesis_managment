@@ -11,6 +11,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import usts.cs2020.model.system.SysUser;
 import usts.cs2020.model.vo.SysUserQueryVo;
+import usts.cs2020.model.vo.SysUserResVo;
 import usts.cs2020.service.SysUserService;
 import usts.cs2020.utils.encrypt.MD5;
 import usts.cs2020.utils.result.Result;
@@ -39,31 +40,31 @@ public class SysUserController {
         // 创建page对象
         Page<SysUser> pageParam = new Page<>(current, size);
 
-        // 封装条件，判断条件值不为空
-        LambdaQueryWrapper<SysUser> wrapper = new LambdaQueryWrapper<>();
-        // 获取条件值
-        String keyword = vo.getKeyword();
-        String createTimeBegin = vo.getCreateTimeBegin();
-        String createTimeEnd = vo.getCreateTimeEnd();
-        // 判断条件值不为空
-        // like 模糊查询
-        if (!StringUtils.isEmpty(keyword)) {
-            wrapper.like(SysUser::getUsername, keyword)
-                    .or().like(SysUser::getRealName, keyword)
-                    .or().like(SysUser::getTel, keyword)
-                    .or().eq(SysUser::getGender, keyword);
-        }
-        // ge 大于等于
-        if (!StringUtils.isEmpty(createTimeBegin)) {
-            wrapper.ge(SysUser::getCreateTime, createTimeBegin);
-        }
-        // le 小于等于
-        if (!StringUtils.isEmpty(createTimeEnd)) {
-            wrapper.le(SysUser::getCreateTime, createTimeEnd);
-        }
+        // // 封装条件，判断条件值不为空
+        // LambdaQueryWrapper<SysUser> wrapper = new LambdaQueryWrapper<>();
+        // // 获取条件值
+        // String keyword = vo.getKeyword();
+        // String createTimeBegin = vo.getCreateTimeBegin();
+        // String createTimeEnd = vo.getCreateTimeEnd();
+        // // 判断条件值不为空
+        // // like 模糊查询
+        // if (!StringUtils.isEmpty(keyword)) {
+        //     wrapper.like(SysUser::getUsername, keyword)
+        //             .or().like(SysUser::getRealName, keyword)
+        //             .or().like(SysUser::getTel, keyword)
+        //             .or().eq(SysUser::getGender, keyword);
+        // }
+        // // ge 大于等于
+        // if (!StringUtils.isEmpty(createTimeBegin)) {
+        //     wrapper.ge(SysUser::getCreateTime, createTimeBegin);
+        // }
+        // // le 小于等于
+        // if (!StringUtils.isEmpty(createTimeEnd)) {
+        //     wrapper.le(SysUser::getCreateTime, createTimeEnd);
+        // }
 
         // 调用mp的方法实现条件分页查询
-        IPage<SysUser> pageModel = service.page(pageParam, wrapper);
+        IPage<SysUserResVo> pageModel = service.queryPageList(pageParam, vo);
         return Result.ok(pageModel);
     }
 

@@ -22,7 +22,7 @@ public class SysTeacherTest {
     public void testInsert() {
         SysTeacher sysTeacher = new SysTeacher();
         sysTeacher.setUserId(4L);
-        sysTeacher.setTRank("教授");
+        sysTeacher.setPosition("教授");
         sysTeacher.setResearchDirection("分布式系统与云计算");
         int res = mapper.insert(sysTeacher);
         System.out.println("res = " + res);
