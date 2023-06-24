@@ -4,8 +4,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 /**
@@ -67,7 +68,7 @@ public class FileUtil {
         // 查询是否重名，重名角标加一
         fileName = checkFileName(list, getFileName, 0);
         String filePath = uploadPath + fileName;
-        BufferedOutputStream outputStream = new BufferedOutputStream(new FileOutputStream(filePath));
+        BufferedOutputStream outputStream = new BufferedOutputStream(Files.newOutputStream(Paths.get(filePath)));
         outputStream.write(file.getBytes());
         outputStream.flush();
         outputStream.close();

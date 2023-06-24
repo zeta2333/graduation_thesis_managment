@@ -1,4 +1,4 @@
-package usts.cs2020.controller.util;
+package usts.cs2020.controller.file;
 
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.InputStreamResource;
