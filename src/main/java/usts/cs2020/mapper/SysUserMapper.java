@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import usts.cs2020.model.system.SysUser;
 import usts.cs2020.model.vo.query.SysUserQueryVo;
 import usts.cs2020.model.vo.result.SysUserResVo;
@@ -20,5 +21,5 @@ import usts.cs2020.model.vo.result.SysUserResVo;
 public interface SysUserMapper extends BaseMapper<SysUser> {
 
     // 条件分页查询
-    IPage<SysUserResVo> findPage(Page<SysUser> pageParam, SysUserQueryVo vo);
+    IPage<SysUserResVo> findPage(Page<SysUser> pageParam, @Param("vo") SysUserQueryVo vo);
 }

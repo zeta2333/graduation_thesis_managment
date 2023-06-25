@@ -3,6 +3,7 @@ package usts.cs2020.mapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import usts.cs2020.model.system.SysStudent;
 import usts.cs2020.model.vo.query.SysStudentQueryVo;
 import usts.cs2020.model.vo.result.SysStudentResVo;
@@ -19,5 +20,9 @@ import usts.cs2020.model.vo.result.SysStudentResVo;
 public interface SysStudentMapper extends BaseMapper<SysStudent> {
 
     // 条件分页查询
-    Page<SysStudentResVo> findAndPage(Page<SysStudent> pageParam, SysStudentQueryVo vo);
+    Page<SysStudentResVo> findAndPage(Page<SysStudent> pageParam, @Param("vo") SysStudentQueryVo vo);
+
+
+    // 根据id查询
+    SysStudentResVo selectResVoById(@Param("id") Long id);
 }

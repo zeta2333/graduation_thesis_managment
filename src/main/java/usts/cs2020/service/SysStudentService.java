@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import usts.cs2020.model.system.SysStudent;
+import usts.cs2020.model.vo.ins_upd.SysStudentInsUpdVo;
 import usts.cs2020.model.vo.query.SysStudentQueryVo;
 import usts.cs2020.model.vo.result.SysStudentResVo;
 
@@ -19,4 +20,13 @@ public interface SysStudentService extends IService<SysStudent> {
 
     // 条件分页查询
     IPage<SysStudentResVo> queryPageList(SysStudentQueryVo vo, Page<SysStudent> pageParam);
+
+    // 添加学生
+    void saveByVo(SysStudentInsUpdVo vo);
+
+    // 修改学生
+    void updateByVo(SysStudentInsUpdVo vo);
+
+    // 根据id查询并返回resVo
+    SysStudentResVo getResVoById(Long id);
 }

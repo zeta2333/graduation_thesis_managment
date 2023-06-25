@@ -3,13 +3,13 @@
 <mapper namespace="usts.cs2020.mapper.SysMenuMapper">
 
     <select id="findListByUserId" resultType="usts.cs2020.model.system.SysMenu">
-        SELECT
-            m.*
-        FROM
-            sys_menu m
-                JOIN sys_role_menu rm ON rm.menu_id = m.id
-                JOIN sys_user u ON u.role_id = rm.role_id
-        WHERE
-            u.id = #{userId}
+        SELECT m.*
+        FROM sys_menu m
+                 JOIN sys_role_menu rm ON rm.menu_id = m.id
+                 JOIN sys_user u ON u.role_id = rm.role_id
+        WHERE rm.is_deleted = 0
+          and m.is_deleted = 0
+          and u.is_deleted = 0
+          and u.id = #{userId}
     </select>
 </mapper>

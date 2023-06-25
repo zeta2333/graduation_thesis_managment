@@ -7,7 +7,8 @@
         u.real_name as teacher_name
         FROM sys_teacher t
         LEFT JOIN sys_user u ON t.user_id = u.id
-        where 1 = 1
+        where t.is_deleted = 0
+        and u.is_deleted = 0
         <if test="vo.keyword != null and vo.keyword != ''">
             and (
             u.real_name like concat('%',#{vo.keyword},'%')
@@ -15,5 +16,14 @@
             or t.position = #{vo.keyword}
             )
         </if>
+    </select>
+    <select id="selectResVoById" resultType="usts.cs2020.model.vo.result.SysTeacherResVo">
+        SELECT t.*,
+               u.real_name as teacher_name
+        FROM sys_teacher t
+                 LEFT JOIN sys_user u ON t.user_id = u.id
+        where t.is_deleted = 0
+          and u.is_deleted = 0
+          and t.id = #{id}
     </select>
 </mapper>

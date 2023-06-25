@@ -8,6 +8,7 @@ import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import usts.cs2020.model.system.SysStudent;
+import usts.cs2020.model.vo.ins_upd.SysStudentInsUpdVo;
 import usts.cs2020.model.vo.query.SysStudentQueryVo;
 import usts.cs2020.model.vo.result.SysStudentResVo;
 import usts.cs2020.service.SysStudentService;
@@ -43,21 +44,21 @@ public class SysStudentController {
     @ApiOperation(value = "根据id获取")
     @GetMapping("get/{id}")
     public Result get(@PathVariable Long id) {
-        SysStudent student = service.getById(id);
-        return Result.ok(student);
+        SysStudentResVo studentResVo = service.getResVoById(id);
+        return Result.ok(studentResVo);
     }
 
     @ApiOperation(value = "添加")
     @PostMapping("save")
-    public Result save(@RequestBody SysStudent student) {
-        service.save(student);
+    public Result save(@RequestBody SysStudentInsUpdVo vo) {
+        service.saveByVo(vo);
         return Result.ok();
     }
 
     @ApiOperation(value = "更新")
     @PutMapping("update")
-    public Result updateById(@RequestBody SysStudent student) {
-        service.updateById(student);
+    public Result updateById(@RequestBody  SysStudentInsUpdVo vo) {
+        service.updateByVo(vo);
         return Result.ok();
     }
 
