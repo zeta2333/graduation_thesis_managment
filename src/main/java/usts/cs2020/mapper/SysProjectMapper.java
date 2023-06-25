@@ -21,4 +21,10 @@ import usts.cs2020.model.vo.result.SysProjectResVo;
 public interface SysProjectMapper extends BaseMapper<SysProject> {
     // 条件分页查询
     IPage<SysProjectResVo> findPage(Page<SysProject> pageParam, @Param("vo") SysProjectQueryVo vo);
+
+    // 根据id查询
+    SysProjectResVo selectResVoById(@Param("id") Long id);
+
+    // 根据userId查询
+    SysProjectResVo selectResVoByUserId(@Param("userId") Long userId);
 }

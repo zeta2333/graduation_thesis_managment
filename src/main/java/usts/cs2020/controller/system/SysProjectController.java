@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import usts.cs2020.model.system.SysProject;
+import usts.cs2020.model.vo.ins_upd.SysProjectInsUpdVo;
 import usts.cs2020.model.vo.query.SysProjectQueryVo;
 import usts.cs2020.model.vo.result.SysProjectResVo;
 import usts.cs2020.service.SysProjectService;
@@ -44,14 +45,21 @@ public class SysProjectController {
     @ApiOperation(value = "根据id获取")
     @GetMapping("get/{id}")
     public Result get(@PathVariable Long id) {
-        SysProject project = service.getById(id);
-        return Result.ok(project);
+        SysProjectResVo projectResVo = service.getResVoById(id);
+        return Result.ok(projectResVo);
+    }
+
+    @ApiOperation("查询目标教师的课题")
+    @GetMapping("getByUserId/{userId}")
+    public Result getByUserId(@PathVariable("userId") Long userId) {
+        SysProjectResVo projectResVo = service.getByUserId(userId);
+        return Result.ok(projectResVo);
     }
 
     @ApiOperation(value = "添加")
     @PostMapping("save")
-    public Result save(@RequestBody SysProject project) {
-        service.save(project);
+    public Result save(@RequestBody SysProjectInsUpdVo vo) {
+        service.saveByVo(vo);
         return Result.ok();
     }
 

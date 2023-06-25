@@ -58,6 +58,8 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         // 根据用户id获取菜单
         List<RouterVo> routerVoList = menuService.findUserMenuList(user.getId());
 
+        result.put("userId", user.getId());
+        result.put("username", user.getUsername());
         result.put("name", user.getRealName());
         result.put("avatar", "https://z3.ax1x.com/2021/03/28/cp7SOK.gif");
         // TODO 权限控制

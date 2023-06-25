@@ -35,7 +35,7 @@ public class SysProject extends BaseEntity {
     private String description;
 
     /**
-     * 课题状态（0：无人选择，1：有人选择）
+     * 课题状态（0：待审核，1：审核通过待选择，2：有人选择）
      */
     @TableField("status")
     private Integer status;

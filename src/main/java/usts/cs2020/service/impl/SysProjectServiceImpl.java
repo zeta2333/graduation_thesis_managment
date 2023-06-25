@@ -1,9 +1,14 @@
 package usts.cs2020.service.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.springframework.beans.factory.annotation.Autowired;
+import usts.cs2020.mapper.SysTeacherMapper;
 import usts.cs2020.model.system.SysProject;
 import usts.cs2020.mapper.SysProjectMapper;
+import usts.cs2020.model.system.SysTeacher;
+import usts.cs2020.model.vo.ins_upd.SysProjectInsUpdVo;
 import usts.cs2020.model.vo.query.SysProjectQueryVo;
 import usts.cs2020.model.vo.result.SysProjectResVo;
 import usts.cs2020.service.SysProjectService;
@@ -20,6 +25,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class SysProjectServiceImpl extends ServiceImpl<SysProjectMapper, SysProject> implements SysProjectService {
+    @Autowired
+    SysTeacherMapper teacherMapper;
 
     // 条件分页查询
     @Override
@@ -28,5 +35,31 @@ public class SysProjectServiceImpl extends ServiceImpl<SysProjectMapper, SysProj
             vo.setKeyword(vo.getKeyword().trim());
         }
         return baseMapper.findPage(pageParam, vo);
+    }
+
+    @Override
+    public SysProjectResVo getResVoById(Long id) {
+        return baseMapper.selectResVoById(id);
+    }
+
+    @Override
+    public void saveByVo(SysProjectInsUpdVo vo) {
+        SysTeacher teacher = teacherMapper.selectOne(
+                new LambdaQueryWrapper<SysTeacher>()
+                        .eq(SysTeacher::getUserId, vo.getUserId())
+        );
+        Long teacherId = teacher.getId();
+        SysProject project = new SysProject();
+        project.setProjectName(vo.getProjectName());
+        project.setTeacherId(teacherId);
+        project.setDescription(vo.getDescription());
+        project.setStatus(vo.getStatus());
+        baseMapper.insert(project);
+    }
+
+    // 根据userId查询
+    @Override
+    public SysProjectResVo getByUserId(Long userId) {
+        return baseMapper.selectResVoByUserId(userId);
     }
 }

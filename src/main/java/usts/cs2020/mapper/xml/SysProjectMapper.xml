@@ -19,4 +19,26 @@
             )
         </if>
     </select>
+    <select id="selectResVoById" resultType="usts.cs2020.model.vo.result.SysProjectResVo">
+        SELECT p.*,
+               u.real_name as teacher_name
+        FROM sys_project p
+                 LEFT JOIN sys_teacher t ON p.teacher_id = t.id
+                 LEFT JOIN sys_user u ON t.user_id = u.id
+        where p.is_deleted = 0
+          and t.is_deleted = 0
+          and u.is_deleted = 0
+          and p.id = #{id}
+    </select>
+    <select id="selectResVoByUserId" resultType="usts.cs2020.model.vo.result.SysProjectResVo">
+        SELECT p.*,
+               u.real_name as teacher_name
+        FROM sys_project p
+                 LEFT JOIN sys_teacher t ON p.teacher_id = t.id
+                 LEFT JOIN sys_user u ON t.user_id = u.id
+        where p.is_deleted = 0
+          and t.is_deleted = 0
+          and u.is_deleted = 0
+          and u.id = #{userId}
+    </select>
 </mapper>
