@@ -1,12 +1,18 @@
 package usts.cs2020.controller.system;
 
 import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import usts.cs2020.model.system.LoginVo;
+import usts.cs2020.model.system.SysUser;
+import usts.cs2020.service.SysUserService;
+import usts.cs2020.utils.encrypt.MD5;
+import usts.cs2020.utils.handler.CustomException;
+import usts.cs2020.utils.jwt.JwtHelper;
 import usts.cs2020.utils.result.Result;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,15 +25,27 @@ import java.util.Map;
 @RestController
 @RequestMapping("system/index")
 public class IndexController {
+    @Autowired
+    SysUserService userService;
+
     /**
      * 登录
      *
      * @return
      */
+    @ApiOperation("登录")
     @PostMapping("login")
-    public Result login() {
+    public Result login(@RequestBody LoginVo loginVo) {
+        SysUser user = userService.getByUsername(loginVo.getUsername());
+        // 登录验证
+        if (user == null) {
+            throw new CustomException(201, "用户不存在");
+        }
+        if (!MD5.encrypt(loginVo.getPassword()).equals(user.getPassword())) {
+            throw new CustomException(201, "密码错误");
+        }
         Map<String, Object> map = new HashMap<>();
-        map.put("token", "admin");
+        map.put("token", JwtHelper.createToken(user.getId(), user.getUsername()));
         return Result.ok(map);
     }
 
@@ -36,13 +54,11 @@ public class IndexController {
      *
      * @return
      */
+    @ApiOperation("获取信息")
     @GetMapping("info")
-    public Result info() {
-        Map<String, Object> map = new HashMap<>();
-        map.put("role", "admin");
-        map.put("name", "Pycro");
-        // map.put("avatar", "https://oss.aliyuncs.com/aliyun_id_photo_bucket/default_handsome.jpg");
-        map.put("avatar", "https://z3.ax1x.com/2021/03/28/cp7SOK.gif");
+    public Result info(HttpServletRequest request) {
+        String username = JwtHelper.getUsername(request.getHeader("token"));
+        Map<String, Object> map = userService.getUserInfo(username);
         return Result.ok(map);
     }
 
@@ -51,6 +67,7 @@ public class IndexController {
      *
      * @return
      */
+    @ApiOperation("登出")
     @PostMapping("logout")
     public Result logout() {
         return Result.ok();

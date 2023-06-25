@@ -1,7 +1,10 @@
 package usts.cs2020.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import usts.cs2020.model.system.RouterVo;
 import usts.cs2020.model.system.SysMenu;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,5 +16,6 @@ import usts.cs2020.model.system.SysMenu;
  */
 
 public interface SysMenuService extends IService<SysMenu> {
-
+    // 获取用户菜单
+    List<RouterVo> findUserMenuList(Long userId);
 }

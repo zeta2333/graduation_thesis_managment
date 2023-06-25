@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import usts.cs2020.model.base.BaseEntity;
 
+import java.util.List;
+
 /**
  * <p>
  * 菜单表
@@ -18,6 +20,16 @@ import usts.cs2020.model.base.BaseEntity;
 public class SysMenu extends BaseEntity {
 
 
+    /**
+     * 上层目录id
+     */
+    @TableField("parent_id")
+    private Long parentId;
+    /**
+     * 菜单类型 （0：目录，1：菜单）
+     */
+    @TableField("type")
+    private Integer type;
     /**
      * 名称
      */
@@ -48,5 +60,7 @@ public class SysMenu extends BaseEntity {
     @TableField("sort_value")
     private Integer sortValue;
 
-
+    // 下级列表
+    @TableField(exist = false)
+    private List<SysMenu> children;
 }
