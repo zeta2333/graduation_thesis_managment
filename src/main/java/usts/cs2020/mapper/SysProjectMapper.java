@@ -9,6 +9,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import usts.cs2020.model.vo.query.SysProjectQueryVo;
 import usts.cs2020.model.vo.result.SysProjectResVo;
 
+import java.util.List;
+
 /**
  * <p>
  * 课题 Mapper 接口
@@ -26,5 +28,5 @@ public interface SysProjectMapper extends BaseMapper<SysProject> {
     SysProjectResVo selectResVoById(@Param("id") Long id);
 
     // 根据userId查询
-    SysProjectResVo selectResVoByUserId(@Param("userId") Long userId);
+    List<SysProjectResVo> selectResVoByUserId(@Param("userId") Long userId);
 }

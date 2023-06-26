@@ -15,6 +15,8 @@ import usts.cs2020.service.SysProjectService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  * 课题 服务实现类
@@ -59,7 +61,7 @@ public class SysProjectServiceImpl extends ServiceImpl<SysProjectMapper, SysProj
 
     // 根据userId查询
     @Override
-    public SysProjectResVo getByUserId(Long userId) {
+    public List<SysProjectResVo> getByUserId(Long userId) {
         return baseMapper.selectResVoByUserId(userId);
     }
 }

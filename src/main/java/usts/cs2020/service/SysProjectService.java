@@ -8,6 +8,8 @@ import usts.cs2020.model.vo.ins_upd.SysProjectInsUpdVo;
 import usts.cs2020.model.vo.query.SysProjectQueryVo;
 import usts.cs2020.model.vo.result.SysProjectResVo;
 
+import java.util.List;
+
 /**
  * <p>
  * 课题 服务类
@@ -28,5 +30,5 @@ public interface SysProjectService extends IService<SysProject> {
     void saveByVo(SysProjectInsUpdVo vo);
 
     // 根据userId查询
-    SysProjectResVo getByUserId(Long userId);
+    List<SysProjectResVo> getByUserId(Long userId);
 }

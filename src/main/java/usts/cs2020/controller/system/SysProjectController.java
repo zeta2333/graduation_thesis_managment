@@ -15,6 +15,8 @@ import usts.cs2020.model.vo.result.SysProjectResVo;
 import usts.cs2020.service.SysProjectService;
 import usts.cs2020.utils.result.Result;
 
+import java.util.List;
+
 /**
  * <p>
  * 课题 前端控制器
@@ -52,8 +54,8 @@ public class SysProjectController {
     @ApiOperation("查询目标教师的课题")
     @GetMapping("getByUserId/{userId}")
     public Result getByUserId(@PathVariable("userId") Long userId) {
-        SysProjectResVo projectResVo = service.getByUserId(userId);
-        return Result.ok(projectResVo);
+        List<SysProjectResVo> projectResVoList = service.getByUserId(userId);
+        return Result.ok(projectResVoList);
     }
 
     @ApiOperation(value = "添加")
