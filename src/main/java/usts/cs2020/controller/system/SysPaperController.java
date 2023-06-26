@@ -65,5 +65,12 @@ public class SysPaperController {
         service.removeById(id);
         return Result.ok();
     }
+
+    @ApiOperation("根据学生id查询")
+    @GetMapping("getByStudentId/{studentId}")
+    public Result getByStudentId(@PathVariable("studentId") Long studentId) {
+        SysPaper paper = service.getByStudentId(studentId);
+        return Result.ok(paper);
+    }
 }
 
