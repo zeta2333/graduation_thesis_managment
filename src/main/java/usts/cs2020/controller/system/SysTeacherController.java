@@ -75,8 +75,8 @@ public class SysTeacherController {
     }
 
     @ApiOperation("下载论文")
-    @GetMapping("downloadPaper")
-    public ModelAndView hello(@RequestParam("filename") String filename) {
+    @GetMapping("downloadPaper/{filename}")
+    public ModelAndView hello(@PathVariable("filename") String filename) {
         return new ModelAndView(
                 "redirect:/system/sysFile/download",
                 new ModelMap("filename", filename)
