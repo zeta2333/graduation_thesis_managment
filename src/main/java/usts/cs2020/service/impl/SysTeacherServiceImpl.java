@@ -63,6 +63,7 @@ public class SysTeacherServiceImpl extends ServiceImpl<SysTeacherMapper, SysTeac
         // 查询教师对应的用户
         SysUser user = userMapper.selectById(vo.getUserId());
         // 更新属性
+        user.setUsername(vo.getUsername());
         user.setPassword(vo.getPassword());
         user.setRealName(vo.getTeacherName());
         user.setTel(vo.getTel());
