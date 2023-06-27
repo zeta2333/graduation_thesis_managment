@@ -148,6 +148,7 @@ public class SysStudentServiceImpl extends ServiceImpl<SysStudentMapper, SysStud
         SysProject project = projectMapper.selectById(projectId);
         // 修改课题状态为2：有人选择
         project.setStatus(2);
+        projectMapper.updateById(project);
 
         // 查询当前的学生
         SysStudent student = baseMapper.selectOne(
