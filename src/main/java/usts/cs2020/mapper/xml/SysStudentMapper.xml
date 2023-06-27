@@ -29,12 +29,6 @@
         LEFT JOIN sys_project p ON s.project_id = p.id
         LEFT JOIN sys_paper paper ON paper.student_id = s.id
         WHERE s.is_deleted = 0
-        AND t.is_deleted = 0
-        AND u1.is_deleted = 0
-        AND u2.is_deleted = 0
-        AND sub.is_deleted = 0
-        AND p.is_deleted = 0
-        AND paper.is_deleted = 0
         <if test="vo.keyword != null and vo.keyword != ''">
             and (
             u1.real_name like concat('%',#{vo.keyword},'%')
@@ -59,12 +53,6 @@
                  LEFT JOIN sys_project p ON s.project_id = p.id
                  LEFT JOIN sys_paper paper ON paper.student_id = s.id
         WHERE s.is_deleted = 0
-          AND t.is_deleted = 0
-          AND u1.is_deleted = 0
-          AND u2.is_deleted = 0
-          AND sub.is_deleted = 0
-          AND p.is_deleted = 0
-          AND paper.is_deleted = 0
           AND s.id = #{id}
     </select>
     <select id="selectListByTeacherUserId" resultType="usts.cs2020.model.vo.result.SysStudentResVo">
@@ -84,12 +72,6 @@
                  LEFT JOIN sys_project p ON s.project_id = p.id
                  LEFT JOIN sys_paper paper ON paper.student_id = s.id
         WHERE s.is_deleted = 0
-          AND t.is_deleted = 0
-          AND u1.is_deleted = 0
-          AND u2.is_deleted = 0
-          AND sub.is_deleted = 0
-          AND p.is_deleted = 0
-          AND paper.is_deleted = 0
           AND t.user_id = #{userId}
     </select>
 

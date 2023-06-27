@@ -110,5 +110,15 @@ public class SysStudentController {
         service.assessGrade(id, grade);
         return Result.ok();
     }
+
+    @ApiOperation("评定成绩")
+    @PutMapping("gradeAssess")
+    public Result gradeAssess(
+            @PathVariable("id") Long id,
+            @PathVariable("grade") Integer grade
+    ) {
+        service.assessGrade(id, grade);
+        return Result.ok();
+    }
 }
 
