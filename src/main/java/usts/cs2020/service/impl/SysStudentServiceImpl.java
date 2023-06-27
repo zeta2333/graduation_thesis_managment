@@ -7,10 +7,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import usts.cs2020.mapper.SysPaperMapper;
-import usts.cs2020.mapper.SysStudentMapper;
-import usts.cs2020.mapper.SysSubjectMapper;
-import usts.cs2020.mapper.SysUserMapper;
+import usts.cs2020.mapper.*;
 import usts.cs2020.model.system.SysPaper;
 import usts.cs2020.model.system.SysStudent;
 import usts.cs2020.model.system.SysSubject;
@@ -41,6 +38,7 @@ public class SysStudentServiceImpl extends ServiceImpl<SysStudentMapper, SysStud
     private SysSubjectMapper subjectMapper;
     @Autowired
     private SysPaperMapper paperMapper;
+
 
     // 条件分页查询
     @Override
@@ -142,5 +140,17 @@ public class SysStudentServiceImpl extends ServiceImpl<SysStudentMapper, SysStud
     @Override
     public List<SysStudentResVo> listByTeacherUserId(Long userId) {
         return baseMapper.selectListByTeacherUserId(userId);
+    }
+
+    // 选择课题
+    @Override
+    public void selectProject(Long userId, Long projectId) {
+        SysStudent student = baseMapper.selectOne(
+                new LambdaQueryWrapper<SysStudent>()
+                        .eq(SysStudent::getUserId, userId)
+        );
+        student.setProjectId(projectId);
+        student.setProjectStatus(1);// 设置当前学生的课题状态为已选择
+        baseMapper.updateById(student);
     }
 }

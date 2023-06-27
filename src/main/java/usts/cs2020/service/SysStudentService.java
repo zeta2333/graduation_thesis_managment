@@ -39,4 +39,7 @@ public interface SysStudentService extends IService<SysStudent> {
 
     // 根据教师的userId获取学生列表
     List<SysStudentResVo> listByTeacherUserId(Long userId);
+
+    // 选择课题
+    void selectProject(Long userId, Long projectId);
 }

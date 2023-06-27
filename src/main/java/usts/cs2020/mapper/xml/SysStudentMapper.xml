@@ -70,4 +70,5 @@
           AND p.is_deleted = 0
           AND t.user_id = #{userId}
     </select>
+
 </mapper>

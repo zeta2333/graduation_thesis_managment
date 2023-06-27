@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -80,15 +81,15 @@ public class SysStudentController {
         return Result.ok();
     }
 
-    // @ApiOperation("选择课题")
-    // @PostMapping("selectProject/{userId}/{projectId}")
-    // public Result selectProject(
-    //         @PathVariable("userId")Long userId,
-    //         @PathVariable("")
-    //         ) {
-    //
-    //     return Result.ok();
-    // }
+    @ApiOperation("选择课题")
+    @PostMapping("selectProject/{userId}/{projectId}")
+    public Result selectProject(
+            @PathVariable("userId") @ApiParam("当前学生的userId") Long userId,
+            @PathVariable("projectId") @ApiParam("所选项目的id") Long projectId
+    ) {
+        service.selectProject(userId,projectId);
+        return Result.ok();
+    }
 
     @ApiOperation("上传论文")
     @PostMapping("uploadPaper")
