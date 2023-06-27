@@ -144,6 +144,11 @@ public class SysStudentServiceImpl extends ServiceImpl<SysStudentMapper, SysStud
     // 选择课题
     @Override
     public void selectProject(Long userId, Long projectId) {
+        // 查询选择的课题
+        SysProject project = projectMapper.selectById(projectId);
+        // 修改课题状态为2：有人选择
+        project.setStatus(2);
+
         // 查询当前的学生
         SysStudent student = baseMapper.selectOne(
                 new LambdaQueryWrapper<SysStudent>()
@@ -151,13 +156,11 @@ public class SysStudentServiceImpl extends ServiceImpl<SysStudentMapper, SysStud
         );
         // 修改学生信息
         student.setProjectId(projectId);
+        student.setTeacherId(project.getTeacherId());
         student.setProjectStatus(1);// 设置当前学生的课题状态为已选择
         baseMapper.updateById(student);
 
-        // 查询选择的课题
-        SysProject project = projectMapper.selectById(projectId);
-        // 修改课题状态为2：有人选择
-        project.setStatus(2);
+
     }
 
     @Override
