@@ -6,23 +6,30 @@
     Page<SysStudentResVo> findAndPage(Page<SysStudent> pageParam, SysStudentQueryVo vo);
      -->
     <select id="findAndPage" resultType="usts.cs2020.model.vo.result.SysStudentResVo">
-        SELECT s.*,
+        SELECT
+        s.*,
         u1.real_name AS student_name,
         sub.subject_name,
         u2.real_name AS teacher_name,
-        p.project_name
-        FROM sys_student s
+        p.project_name,
+        paper.paper_title,
+        paper.paper_status,
+        paper.paper_path
+        FROM
+        sys_student s
         LEFT JOIN sys_teacher t ON s.teacher_id = t.id
         LEFT JOIN sys_user u1 ON s.user_id = u1.id
         LEFT JOIN sys_user u2 ON t.user_id = u2.id
         LEFT JOIN sys_subject sub ON s.subject_id = sub.id
         LEFT JOIN sys_project p ON s.project_id = p.id
-        where s.is_deleted = 0
-        and t.is_deleted = 0
-        and u1.is_deleted = 0
-        and u2.is_deleted = 0
-        and sub.is_deleted = 0
-        and p.is_deleted = 0
+        LEFT JOIN sys_paper paper ON paper.student_id = s.id
+        WHERE s.is_deleted = 0
+        AND t.is_deleted = 0
+        AND u1.is_deleted = 0
+        AND u2.is_deleted = 0
+        AND sub.is_deleted = 0
+        AND p.is_deleted = 0
+        AND paper.is_deleted = 0
         <if test="vo.keyword != null and vo.keyword != ''">
             and (
             u1.real_name like concat('%',#{vo.keyword},'%')
@@ -35,39 +42,49 @@
                u1.real_name AS student_name,
                sub.subject_name,
                u2.real_name AS teacher_name,
-               p.project_name
+               p.project_name,
+               paper.paper_title,
+               paper.paper_status,
+               paper.paper_path
         FROM sys_student s
                  LEFT JOIN sys_teacher t ON s.teacher_id = t.id
                  LEFT JOIN sys_user u1 ON s.user_id = u1.id
                  LEFT JOIN sys_user u2 ON t.user_id = u2.id
                  LEFT JOIN sys_subject sub ON s.subject_id = sub.id
                  LEFT JOIN sys_project p ON s.project_id = p.id
-        where s.is_deleted = 0
-          and t.is_deleted = 0
-          and u1.is_deleted = 0
-          and u2.is_deleted = 0
-          and sub.is_deleted = 0
-          and p.is_deleted = 0
-          and s.id = #{id}
-    </select>
-    <select id="selectListByTeacherUserId" resultType="usts.cs2020.model.vo.result.SysStudentResVo">
-        SELECT s.*,
-               u1.real_name AS student_name,
-               sub.subject_name,
-               u2.real_name AS teacher_name,
-               p.project_name
-        FROM sys_student s
-                 LEFT JOIN sys_teacher t ON s.teacher_id = t.id
-                 LEFT JOIN sys_user u1 ON s.user_id = u1.id
-                 LEFT JOIN sys_user u2 ON t.user_id = u2.id
-                 LEFT JOIN sys_subject sub ON s.subject_id = sub.id
-                 LEFT JOIN sys_project p ON s.project_id = p.id
+                 LEFT JOIN sys_paper paper ON paper.student_id = s.id
         WHERE s.is_deleted = 0
           AND t.is_deleted = 0
           AND u1.is_deleted = 0
           AND u2.is_deleted = 0
           AND sub.is_deleted = 0
           AND p.is_deleted = 0
+          AND paper.is_deleted = 0
+          AND s.id = #{id}
+    </select>
+    <select id="selectListByTeacherUserId" resultType="usts.cs2020.model.vo.result.SysStudentResVo">
+        SELECT s.*,
+               u1.real_name AS student_name,
+               sub.subject_name,
+               u2.real_name AS teacher_name,
+               p.project_name,
+               paper.paper_title,
+               paper.paper_status,
+               paper.paper_path
+        FROM sys_student s
+                 LEFT JOIN sys_teacher t ON s.teacher_id = t.id
+                 LEFT JOIN sys_user u1 ON s.user_id = u1.id
+                 LEFT JOIN sys_user u2 ON t.user_id = u2.id
+                 LEFT JOIN sys_subject sub ON s.subject_id = sub.id
+                 LEFT JOIN sys_project p ON s.project_id = p.id
+                 LEFT JOIN sys_paper paper ON paper.student_id = s.id
+        WHERE s.is_deleted = 0
+          AND t.is_deleted = 0
+          AND u1.is_deleted = 0
+          AND u2.is_deleted = 0
+          AND sub.is_deleted = 0
+          AND p.is_deleted = 0
+          AND paper.is_deleted = 0
           AND t.user_id = #{userId}
     </select>
 

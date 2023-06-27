@@ -14,4 +14,7 @@ public class SysStudentResVo extends SysStudent {
     private String projectName;
     private String teacherName;
     private String subjectName;
+    private String paperTitle;
+    private Integer paperStatus;
+    private String paperPath;
 }
