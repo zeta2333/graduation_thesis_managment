@@ -12,7 +12,7 @@ import usts.cs2020.model.system.SysTeacher;
 public class SysTeacherInsUpdVo extends SysTeacher {
     private String username;
     private String password;
-    private String realName;
+    private String teacherName;
     private String tel;
     private String gender;
 }

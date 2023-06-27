@@ -57,7 +57,7 @@ public class SysStudentServiceImpl extends ServiceImpl<SysStudentMapper, SysStud
         // 填充属性
         user.setUsername(vo.getUsername());
         user.setPassword(vo.getPassword());
-        user.setRealName(vo.getRealName());
+        user.setRealName(vo.getStudentName());
         user.setTel(vo.getTel());
         user.setGender(vo.getGender());
         user.setRoleId(1L);// 学生角色的roleId为1
@@ -81,7 +81,7 @@ public class SysStudentServiceImpl extends ServiceImpl<SysStudentMapper, SysStud
         SysUser user = userMapper.selectById(vo.getUserId());
         // 更新属性
         user.setPassword(vo.getPassword());
-        user.setRealName(vo.getRealName());
+        user.setRealName(vo.getStudentName());
         user.setTel(vo.getTel());
         user.setGender(vo.getGender());
         // 更新学生对应的用户信息

@@ -43,7 +43,7 @@ public class SysTeacherServiceImpl extends ServiceImpl<SysTeacherMapper, SysTeac
         // 填充属性
         user.setUsername(vo.getUsername());
         user.setPassword(vo.getPassword());
-        user.setRealName(vo.getRealName());
+        user.setRealName(vo.getTeacherName());
         user.setTel(vo.getTel());
         user.setGender(vo.getGender());
         user.setRoleId(2L);// 教师角色的roleId为2
@@ -64,7 +64,7 @@ public class SysTeacherServiceImpl extends ServiceImpl<SysTeacherMapper, SysTeac
         SysUser user = userMapper.selectById(vo.getUserId());
         // 更新属性
         user.setPassword(vo.getPassword());
-        user.setRealName(vo.getRealName());
+        user.setRealName(vo.getTeacherName());
         user.setTel(vo.getTel());
         user.setGender(vo.getGender());
         // 更新教师对应的用户信息

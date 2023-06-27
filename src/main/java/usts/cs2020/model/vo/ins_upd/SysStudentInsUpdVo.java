@@ -13,7 +13,7 @@ public class SysStudentInsUpdVo extends SysStudent {
     private String subjectName;
     private String username;
     private String password;
-    private String realName;
+    private String studentName;
     private String tel;
     private String gender;
 }
