@@ -34,9 +34,11 @@ public class SysTeacherController {
     // 条件分页查询
     @ApiOperation("分页查询")
     @GetMapping("{current}/{size}")
-    public Result index(@PathVariable Long current,
-                        @PathVariable Long size,
-                        SysTeacherQueryVo vo) {
+    public Result index(
+            @PathVariable Long current,
+            @PathVariable Long size,
+            SysTeacherQueryVo vo
+    ) {
         // 创建page对象
         Page<SysTeacher> pageParam = new Page<>(current, size);
         // 条件分页查询
@@ -80,5 +82,4 @@ public class SysTeacherController {
                 new ModelMap("filename", filename)
         );
     }
-
 }

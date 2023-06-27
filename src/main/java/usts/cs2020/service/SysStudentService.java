@@ -10,6 +10,7 @@ import usts.cs2020.model.vo.query.SysStudentQueryVo;
 import usts.cs2020.model.vo.result.SysStudentResVo;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * <p>
@@ -35,4 +36,7 @@ public interface SysStudentService extends IService<SysStudent> {
 
     // 上传文件
     void uploadFile(MultipartFile file, Long userId) throws IOException;
+
+    // 根据教师的userId获取学生列表
+    List<SysStudentResVo> listByTeacherUserId(Long userId);
 }

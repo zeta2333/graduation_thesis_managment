@@ -50,4 +50,24 @@
           and p.is_deleted = 0
           and s.id = #{id}
     </select>
+    <select id="selectListByTeacherUserId" resultType="usts.cs2020.model.vo.result.SysStudentResVo">
+        SELECT s.*,
+               u1.real_name AS student_name,
+               sub.subject_name,
+               u2.real_name AS teacher_name,
+               p.project_name
+        FROM sys_student s
+                 LEFT JOIN sys_teacher t ON s.teacher_id = t.id
+                 LEFT JOIN sys_user u1 ON s.user_id = u1.id
+                 LEFT JOIN sys_user u2 ON t.user_id = u2.id
+                 LEFT JOIN sys_subject sub ON s.subject_id = sub.id
+                 LEFT JOIN sys_project p ON s.project_id = p.id
+        WHERE s.is_deleted = 0
+          AND t.is_deleted = 0
+          AND u1.is_deleted = 0
+          AND u2.is_deleted = 0
+          AND sub.is_deleted = 0
+          AND p.is_deleted = 0
+          AND t.user_id = #{userId}
+    </select>
 </mapper>

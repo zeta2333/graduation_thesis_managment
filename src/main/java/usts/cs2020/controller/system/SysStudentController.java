@@ -16,6 +16,7 @@ import usts.cs2020.service.SysStudentService;
 import usts.cs2020.utils.result.Result;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * <p>
@@ -51,6 +52,13 @@ public class SysStudentController {
         return Result.ok(studentResVo);
     }
 
+    @ApiOperation("根据教师的userId获取学生列表")
+    @GetMapping("listByTeacherUserId/{userId}")
+    public Result listByTeacherUserId(@PathVariable("userId") Long userId) {
+        List<SysStudentResVo> studentList = service.listByTeacherUserId(userId);
+        return Result.ok(studentList);
+    }
+
     @ApiOperation(value = "添加")
     @PostMapping("save")
     public Result save(@RequestBody SysStudentInsUpdVo vo) {
@@ -72,11 +80,15 @@ public class SysStudentController {
         return Result.ok();
     }
 
-    @ApiOperation("选择课题")
-    @PostMapping("selectProject")
-    public Result selectProject() {
-        return Result.ok();
-    }
+    // @ApiOperation("选择课题")
+    // @PostMapping("selectProject/{userId}/{projectId}")
+    // public Result selectProject(
+    //         @PathVariable("userId")Long userId,
+    //         @PathVariable("")
+    //         ) {
+    //
+    //     return Result.ok();
+    // }
 
     @ApiOperation("上传论文")
     @PostMapping("uploadPaper")
@@ -84,7 +96,7 @@ public class SysStudentController {
             @RequestParam("file") MultipartFile file,
             @RequestParam("userId") Long userId
     ) throws IOException {
-        service.uploadFile(file,userId);
+        service.uploadFile(file, userId);
         return Result.ok();
     }
 }

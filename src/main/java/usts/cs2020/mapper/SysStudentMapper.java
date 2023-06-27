@@ -8,6 +8,8 @@ import usts.cs2020.model.system.SysStudent;
 import usts.cs2020.model.vo.query.SysStudentQueryVo;
 import usts.cs2020.model.vo.result.SysStudentResVo;
 
+import java.util.List;
+
 /**
  * <p>
  * 学生 Mapper 接口
@@ -25,4 +27,7 @@ public interface SysStudentMapper extends BaseMapper<SysStudent> {
 
     // 根据id查询
     SysStudentResVo selectResVoById(@Param("id") Long id);
+
+    // 根据教师的userId获取学生列表
+    List<SysStudentResVo> selectListByTeacherUserId(@Param("userId") Long userId);
 }

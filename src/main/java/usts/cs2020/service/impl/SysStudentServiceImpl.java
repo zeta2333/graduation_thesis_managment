@@ -22,6 +22,7 @@ import usts.cs2020.service.SysStudentService;
 import usts.cs2020.utils.file.FileUtil;
 
 import java.io.IOException;
+import java.util.List;
 
 /**
  * <p>
@@ -114,13 +115,32 @@ public class SysStudentServiceImpl extends ServiceImpl<SysStudentMapper, SysStud
         SysStudent student = this.getOne(new LambdaQueryWrapper<SysStudent>()
                 .eq(SysStudent::getUserId, userId));
 
-        // 数据库添加论文记录
-        SysPaper paper = new SysPaper();
-        paper.setPaperPath(fileName);
-        paper.setPaperTitle(fileName.substring(0, fileName.indexOf(".")));
-        paper.setStudentId(student.getId());
-        paper.setPaperStatus(paper.getPaperStatus() + (paper.getPaperStatus() != 3 ? 1 : 0));
-        paperMapper.insert(paper);
+        // 判断，如果数据库没有该学生的论文记录，则新增，否则修改
+        SysPaper paper;
+        // 先进行查询
+        paper = paperMapper.selectOne(new LambdaQueryWrapper<SysPaper>()
+                .eq(SysPaper::getStudentId, student.getId()));
+        if (paper == null) {// 查询不存在，则数据库添加论文记录
+            paper = new SysPaper();
+            paper.setPaperPath(fileName);
+            paper.setPaperTitle(fileName.substring(0, fileName.indexOf(".")));
+            paper.setStudentId(student.getId());
+            paper.setPaperStatus(1);
+            paperMapper.insert(paper);
+        } else {
+            paper.setPaperPath(fileName);
+            paper.setPaperTitle(fileName.substring(0, fileName.indexOf(".")));
+            paper.setPaperStatus(paper.getPaperStatus() + (paper.getPaperStatus() != 3 ? 1 : 0));
+            paperMapper.updateById(paper);
 
+        }
+
+
+    }
+
+    // 根据教师的userId获取学生列表
+    @Override
+    public List<SysStudentResVo> listByTeacherUserId(Long userId) {
+        return baseMapper.selectListByTeacherUserId(userId);
     }
 }
