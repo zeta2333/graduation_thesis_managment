@@ -1,14 +1,17 @@
 package usts.cs2020.controller.system;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 import usts.cs2020.model.system.SysStudent;
 import usts.cs2020.model.vo.ins_upd.GradeVo;
 import usts.cs2020.model.vo.ins_upd.SysStudentInsUpdVo;
@@ -52,6 +55,18 @@ public class SysStudentController {
     public Result getById(@PathVariable Long id) {
         SysStudentResVo studentResVo = service.getResVoById(id);
         return Result.ok(studentResVo);
+    }
+
+    @ApiOperation("根据学生的userId查询")
+    @GetMapping("getByUserId/{userId}")
+    public ModelAndView getByUserId(@PathVariable("userId") Long userId) {
+        SysStudent student = service.getOne(new LambdaQueryWrapper<SysStudent>()
+                .eq(SysStudent::getUserId, userId));
+        Long id = student.getId();
+        return new ModelAndView(
+                "redirect:/system/sysStudent/get/{id}",
+                new ModelMap("id", id)
+        );
     }
 
     @ApiOperation("根据教师的userId获取学生列表")
@@ -115,7 +130,7 @@ public class SysStudentController {
     @ApiOperation("评定成绩")
     @PutMapping("gradeAssess")
     public Result gradeAssess(GradeVo vo) {
-        service.assessGrade(vo.getId(),vo.getGrade());
+        service.assessGrade(vo.getId(), vo.getGrade());
         return Result.ok();
     }
 }
