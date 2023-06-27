@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import usts.cs2020.model.system.SysStudent;
+import usts.cs2020.model.vo.ins_upd.GradeVo;
 import usts.cs2020.model.vo.ins_upd.SysStudentInsUpdVo;
 import usts.cs2020.model.vo.query.SysStudentQueryVo;
 import usts.cs2020.model.vo.result.SysStudentResVo;
@@ -113,11 +114,8 @@ public class SysStudentController {
 
     @ApiOperation("评定成绩")
     @PutMapping("gradeAssess")
-    public Result gradeAssess(
-            @PathVariable("id") Long id,
-            @PathVariable("grade") Integer grade
-    ) {
-        service.assessGrade(id, grade);
+    public Result gradeAssess(GradeVo vo) {
+        service.assessGrade(vo.getId(),vo.getGrade());
         return Result.ok();
     }
 }

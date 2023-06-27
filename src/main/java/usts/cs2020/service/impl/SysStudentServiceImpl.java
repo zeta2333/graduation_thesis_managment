@@ -8,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import usts.cs2020.mapper.*;
-import usts.cs2020.model.system.SysPaper;
-import usts.cs2020.model.system.SysStudent;
-import usts.cs2020.model.system.SysSubject;
-import usts.cs2020.model.system.SysUser;
+import usts.cs2020.model.system.*;
 import usts.cs2020.model.vo.ins_upd.SysStudentInsUpdVo;
 import usts.cs2020.model.vo.query.SysStudentQueryVo;
 import usts.cs2020.model.vo.result.SysStudentResVo;
@@ -38,6 +35,8 @@ public class SysStudentServiceImpl extends ServiceImpl<SysStudentMapper, SysStud
     private SysSubjectMapper subjectMapper;
     @Autowired
     private SysPaperMapper paperMapper;
+    @Autowired
+    private SysProjectMapper projectMapper;
 
 
     // 条件分页查询
@@ -145,17 +144,24 @@ public class SysStudentServiceImpl extends ServiceImpl<SysStudentMapper, SysStud
     // 选择课题
     @Override
     public void selectProject(Long userId, Long projectId) {
+        // 查询当前的学生
         SysStudent student = baseMapper.selectOne(
                 new LambdaQueryWrapper<SysStudent>()
                         .eq(SysStudent::getUserId, userId)
         );
+        // 修改学生信息
         student.setProjectId(projectId);
         student.setProjectStatus(1);// 设置当前学生的课题状态为已选择
         baseMapper.updateById(student);
+
+        // 查询选择的课题
+        SysProject project = projectMapper.selectById(projectId);
+        // 修改课题状态为2：有人选择
+        project.setStatus(2);
     }
 
     @Override
     public void assessGrade(Long id, Integer grade) {
-        baseMapper.assessGrade(id,grade);
+        baseMapper.assessGrade(id, grade);
     }
 }
