@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class FileUtil {
 
-    public final static String UPLOAD_PATH_PREFIX = "src/main/resources/static/uploadFile/";
+    public final static String FILE_PATH_PREFIX = "src/main/resources/static/uploadFile/";
 
     /**
      * @param names 文件下文件名的集合
@@ -58,9 +58,9 @@ public class FileUtil {
         return list;
     }
 
-    public static void upload(MultipartFile file) throws IOException {
+    public static String upload(MultipartFile file) throws IOException {
         // 上传路径
-        String uploadPath = UPLOAD_PATH_PREFIX;
+        String uploadPath = FILE_PATH_PREFIX;
         ArrayList<String> list = getFile(uploadPath);
         /*获取文件名*/
         String getFileName = file.getOriginalFilename();
@@ -72,5 +72,7 @@ public class FileUtil {
         outputStream.write(file.getBytes());
         outputStream.flush();
         outputStream.close();
+        // 返回保存到服务器的文件名
+        return fileName;
     }
 }

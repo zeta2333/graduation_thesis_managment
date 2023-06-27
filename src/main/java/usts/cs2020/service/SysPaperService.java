@@ -14,5 +14,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface SysPaperService extends IService<SysPaper> {
 
     // 根据学生id查询
-    SysPaper getByStudentId(Long studentId);
+    SysPaper getByUserId(Long userId);
 }

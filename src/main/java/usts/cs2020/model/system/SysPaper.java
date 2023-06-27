@@ -36,10 +36,10 @@ public class SysPaper extends BaseEntity {
     private Long studentId;
 
     /**
-     * 论文状态（0：开题报告，1：期中小结，2：论文初稿）
+     * 论文状态（1：开题报告，2：期中小结，3：论文初稿）
      */
     @TableField("paper_status")
-    private Integer paperStatus;
+    private Integer paperStatus = 0;
 
 
 }

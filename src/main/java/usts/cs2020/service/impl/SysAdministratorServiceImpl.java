@@ -1,10 +1,10 @@
 package usts.cs2020.service.impl;
 
-import usts.cs2020.model.system.SysAdministrator;
-import usts.cs2020.mapper.SysAdministratorMapper;
-import usts.cs2020.service.SysAdministratorService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
+import usts.cs2020.mapper.SysAdministratorMapper;
+import usts.cs2020.model.system.SysAdministrator;
+import usts.cs2020.service.SysAdministratorService;
 
 /**
  * <p>

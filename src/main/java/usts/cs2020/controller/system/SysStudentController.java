@@ -7,12 +7,15 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import usts.cs2020.model.system.SysStudent;
 import usts.cs2020.model.vo.ins_upd.SysStudentInsUpdVo;
 import usts.cs2020.model.vo.query.SysStudentQueryVo;
 import usts.cs2020.model.vo.result.SysStudentResVo;
 import usts.cs2020.service.SysStudentService;
 import usts.cs2020.utils.result.Result;
+
+import java.io.IOException;
 
 /**
  * <p>
@@ -43,7 +46,7 @@ public class SysStudentController {
 
     @ApiOperation(value = "根据id获取")
     @GetMapping("get/{id}")
-    public Result get(@PathVariable Long id) {
+    public Result getById(@PathVariable Long id) {
         SysStudentResVo studentResVo = service.getResVoById(id);
         return Result.ok(studentResVo);
     }
@@ -57,15 +60,31 @@ public class SysStudentController {
 
     @ApiOperation(value = "更新")
     @PutMapping("update")
-    public Result updateById(@RequestBody  SysStudentInsUpdVo vo) {
+    public Result updateById(@RequestBody SysStudentInsUpdVo vo) {
         service.updateByVo(vo);
         return Result.ok();
     }
 
     @ApiOperation(value = "根据id删除")
     @DeleteMapping("remove/{id}")
-    public Result remove(@PathVariable Long id) {
+    public Result removeById(@PathVariable Long id) {
         service.removeById(id);
+        return Result.ok();
+    }
+
+    @ApiOperation("选择课题")
+    @PostMapping("selectProject")
+    public Result selectProject() {
+        return Result.ok();
+    }
+
+    @ApiOperation("上传论文")
+    @PostMapping("uploadPaper")
+    public Result uploadPaper(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("userId") Long userId
+    ) throws IOException {
+        service.uploadFile(file,userId);
         return Result.ok();
     }
 }

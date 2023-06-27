@@ -6,7 +6,9 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import usts.cs2020.model.system.SysTeacher;
 import usts.cs2020.model.vo.ins_upd.SysTeacherInsUpdVo;
 import usts.cs2020.model.vo.query.SysTeacherQueryVo;
@@ -69,5 +71,14 @@ public class SysTeacherController {
         service.removeById(id);
         return Result.ok();
     }
-}
 
+    @ApiOperation("下载论文")
+    @GetMapping("downloadPaper")
+    public ModelAndView hello(@RequestParam("filename") String filename) {
+        return new ModelAndView(
+                "redirect:/system/sysFile/download",
+                new ModelMap("filename", filename)
+        );
+    }
+
+}

@@ -6,9 +6,12 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+import usts.cs2020.mapper.SysPaperMapper;
 import usts.cs2020.mapper.SysStudentMapper;
 import usts.cs2020.mapper.SysSubjectMapper;
 import usts.cs2020.mapper.SysUserMapper;
+import usts.cs2020.model.system.SysPaper;
 import usts.cs2020.model.system.SysStudent;
 import usts.cs2020.model.system.SysSubject;
 import usts.cs2020.model.system.SysUser;
@@ -16,6 +19,9 @@ import usts.cs2020.model.vo.ins_upd.SysStudentInsUpdVo;
 import usts.cs2020.model.vo.query.SysStudentQueryVo;
 import usts.cs2020.model.vo.result.SysStudentResVo;
 import usts.cs2020.service.SysStudentService;
+import usts.cs2020.utils.file.FileUtil;
+
+import java.io.IOException;
 
 /**
  * <p>
@@ -32,6 +38,8 @@ public class SysStudentServiceImpl extends ServiceImpl<SysStudentMapper, SysStud
     private SysUserMapper userMapper;
     @Autowired
     private SysSubjectMapper subjectMapper;
+    @Autowired
+    private SysPaperMapper paperMapper;
 
     // 条件分页查询
     @Override
@@ -95,5 +103,24 @@ public class SysStudentServiceImpl extends ServiceImpl<SysStudentMapper, SysStud
     @Override
     public SysStudentResVo getResVoById(Long id) {
         return baseMapper.selectResVoById(id);
+    }
+
+    @Override
+    public void uploadFile(MultipartFile file, Long userId) throws IOException {
+        // 上传文件
+        String fileName = FileUtil.upload(file);
+
+        // 根据userId查询学生
+        SysStudent student = this.getOne(new LambdaQueryWrapper<SysStudent>()
+                .eq(SysStudent::getUserId, userId));
+
+        // 数据库添加论文记录
+        SysPaper paper = new SysPaper();
+        paper.setPaperPath(fileName);
+        paper.setPaperTitle(fileName.substring(0, fileName.indexOf(".")));
+        paper.setStudentId(student.getId());
+        paper.setPaperStatus(paper.getPaperStatus() + (paper.getPaperStatus() != 3 ? 1 : 0));
+        paperMapper.insert(paper);
+
     }
 }

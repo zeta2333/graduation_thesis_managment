@@ -3,10 +3,13 @@ package usts.cs2020.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.web.multipart.MultipartFile;
 import usts.cs2020.model.system.SysStudent;
 import usts.cs2020.model.vo.ins_upd.SysStudentInsUpdVo;
 import usts.cs2020.model.vo.query.SysStudentQueryVo;
 import usts.cs2020.model.vo.result.SysStudentResVo;
+
+import java.io.IOException;
 
 /**
  * <p>
@@ -29,4 +32,7 @@ public interface SysStudentService extends IService<SysStudent> {
 
     // 根据id查询并返回resVo
     SysStudentResVo getResVoById(Long id);
+
+    // 上传文件
+    void uploadFile(MultipartFile file, Long userId) throws IOException;
 }

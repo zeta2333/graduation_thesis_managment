@@ -66,10 +66,10 @@ public class SysPaperController {
         return Result.ok();
     }
 
-    @ApiOperation("根据学生id查询")
-    @GetMapping("getByStudentId/{studentId}")
-    public Result getByStudentId(@PathVariable("studentId") Long studentId) {
-        SysPaper paper = service.getByStudentId(studentId);
+    @ApiOperation("根据学生的userId查询")
+    @GetMapping("getByUserId/{userId}")
+    public Result getByUserId(@PathVariable("userId") Long userId) {
+        SysPaper paper = service.getByUserId(userId);
         return Result.ok(paper);
     }
 }
