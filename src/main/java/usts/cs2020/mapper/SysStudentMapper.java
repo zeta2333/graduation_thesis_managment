@@ -31,4 +31,6 @@ public interface SysStudentMapper extends BaseMapper<SysStudent> {
     // 根据教师的userId获取学生列表
     List<SysStudentResVo> selectListByTeacherUserId(@Param("userId") Long userId);
 
+    // 评定成绩
+    void assessGrade(Long id, Integer grade);
 }

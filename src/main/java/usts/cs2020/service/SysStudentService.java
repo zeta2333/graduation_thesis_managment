@@ -42,4 +42,7 @@ public interface SysStudentService extends IService<SysStudent> {
 
     // 选择课题
     void selectProject(Long userId, Long projectId);
+
+    // 评定成绩
+    void assessGrade(Long id, Integer grade);
 }

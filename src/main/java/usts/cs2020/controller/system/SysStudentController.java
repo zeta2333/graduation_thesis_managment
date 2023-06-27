@@ -87,7 +87,7 @@ public class SysStudentController {
             @PathVariable("userId") @ApiParam("当前学生的userId") Long userId,
             @PathVariable("projectId") @ApiParam("所选项目的id") Long projectId
     ) {
-        service.selectProject(userId,projectId);
+        service.selectProject(userId, projectId);
         return Result.ok();
     }
 
@@ -98,6 +98,16 @@ public class SysStudentController {
             @RequestParam("userId") Long userId
     ) throws IOException {
         service.uploadFile(file, userId);
+        return Result.ok();
+    }
+
+    @ApiOperation("评定成绩")
+    @PostMapping("assessGrade/{id}/{grade}")
+    public Result assessGrade(
+            @PathVariable("id") Long id,
+            @PathVariable("grade") Integer grade
+    ) {
+        service.assessGrade(id, grade);
         return Result.ok();
     }
 }

@@ -153,4 +153,9 @@ public class SysStudentServiceImpl extends ServiceImpl<SysStudentMapper, SysStud
         student.setProjectStatus(1);// 设置当前学生的课题状态为已选择
         baseMapper.updateById(student);
     }
+
+    @Override
+    public void assessGrade(Long id, Integer grade) {
+        baseMapper.assessGrade(id,grade);
+    }
 }
