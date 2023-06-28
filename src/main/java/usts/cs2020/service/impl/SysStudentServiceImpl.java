@@ -13,6 +13,7 @@ import usts.cs2020.model.vo.ins_upd.SysStudentInsUpdVo;
 import usts.cs2020.model.vo.query.SysStudentQueryVo;
 import usts.cs2020.model.vo.result.SysStudentResVo;
 import usts.cs2020.service.SysStudentService;
+import usts.cs2020.utils.encrypt.MD5;
 import usts.cs2020.utils.file.FileUtil;
 
 import java.io.IOException;
@@ -54,7 +55,7 @@ public class SysStudentServiceImpl extends ServiceImpl<SysStudentMapper, SysStud
         // 创建user对象
         SysUser user = new SysUser();
         // 填充属性
-        user.setUsername(vo.getUsername());
+        user.setUsername(MD5.encrypt(vo.getPassword()));
         user.setPassword(vo.getPassword());
         user.setRealName(vo.getStudentName());
         user.setTel(vo.getTel());

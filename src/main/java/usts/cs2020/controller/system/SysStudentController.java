@@ -34,6 +34,7 @@ import java.util.List;
 @Api(tags = "学生管理")
 @RestController
 @RequestMapping("/system/sysStudent")
+@CrossOrigin
 public class SysStudentController {
     @Autowired
     private SysStudentService service;
