@@ -21,13 +21,13 @@ public class SysPaper extends BaseEntity {
      * 论文标题
      */
     @TableField("paper_title")
-    private String paperTitle;
+    private String paperTitle = "";
 
     /**
      * 论文路径
      */
     @TableField("paper_path")
-    private String paperPath;
+    private String paperPath = "";
 
     /**
      * 作者id
