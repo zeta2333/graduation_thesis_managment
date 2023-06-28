@@ -13,6 +13,7 @@ import usts.cs2020.model.vo.ins_upd.SysTeacherInsUpdVo;
 import usts.cs2020.model.vo.query.SysTeacherQueryVo;
 import usts.cs2020.model.vo.result.SysTeacherResVo;
 import usts.cs2020.service.SysTeacherService;
+import usts.cs2020.utils.encrypt.MD5;
 
 /**
  * <p>
@@ -42,7 +43,7 @@ public class SysTeacherServiceImpl extends ServiceImpl<SysTeacherMapper, SysTeac
         SysUser user = new SysUser();
         // 填充属性
         user.setUsername(vo.getUsername());
-        user.setPassword(vo.getPassword());
+        user.setPassword(MD5.encrypt(vo.getPassword()));
         user.setRealName(vo.getTeacherName());
         user.setTel(vo.getTel());
         user.setGender(vo.getGender());
