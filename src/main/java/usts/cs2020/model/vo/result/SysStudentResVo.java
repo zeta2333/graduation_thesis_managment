@@ -11,8 +11,8 @@ import usts.cs2020.model.system.SysStudent;
 @Data
 public class SysStudentResVo extends SysStudent {
     private String studentName;
-    private String projectName;
-    private String teacherName;
+    private String projectName = "未选择";
+    private String teacherName = "未选择";
     private String subjectName;
     private String paperTitle;
     private Integer paperStatus;

@@ -38,6 +38,7 @@ public class SysProjectController {
     public Result index(@PathVariable Long current,
                         @PathVariable Long size,
                         SysProjectQueryVo vo) {
+        System.out.println("----------------------SysProjectController.index-------------------------");
         // 创建page对象
         Page<SysProject> pageParam = new Page<>(current, size);
         IPage<SysProjectResVo> pageModel = service.queryPage(pageParam, vo);
@@ -47,6 +48,7 @@ public class SysProjectController {
     @ApiOperation(value = "根据id获取")
     @GetMapping("get/{id}")
     public Result get(@PathVariable Long id) {
+        System.out.println("--------------------------SysProjectController.get--------------------------");
         SysProjectResVo projectResVo = service.getResVoById(id);
         return Result.ok(projectResVo);
     }
@@ -68,6 +70,7 @@ public class SysProjectController {
     @ApiOperation(value = "更新")
     @PutMapping("update")
     public Result updateById(@RequestBody SysProject project) {
+        System.out.println("----------------SysProjectController.updateById-----------------");
         service.updateById(project);
         return Result.ok();
     }
