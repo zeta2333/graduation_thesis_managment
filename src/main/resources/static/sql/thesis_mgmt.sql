@@ -11,7 +11,7 @@
  Target Server Version : 80032 (8.0.32)
  File Encoding         : 65001
 
- Date: 27/06/2023 11:58:37
+ Date: 28/06/2023 14:05:28
 */
 
 SET NAMES utf8mb4;
@@ -84,15 +84,16 @@ CREATE TABLE `sys_paper`  (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '删除标记（0:不可用 1:可用）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '论文' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '论文' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_paper
 -- ----------------------------
-INSERT INTO `sys_paper` VALUES (1, '布耶尔的论文', '布耶尔的论文.txt', 4, 1, '2023-06-27 10:47:09', '2023-06-27 11:51:52', 0);
-INSERT INTO `sys_paper` VALUES (2, 'article', 'article.md', 1, 1, '2023-06-27 11:16:03', '2023-06-27 11:16:03', 0);
-INSERT INTO `sys_paper` VALUES (3, '凯特的论文', '凯特的论文.txt', 2, 1, '2023-06-27 11:28:25', '2023-06-27 11:52:28', 0);
+INSERT INTO `sys_paper` VALUES (1, '布耶尔的论文(2)', '布耶尔的论文(2).txt', 4, 3, '2023-06-27 10:47:09', '2023-06-27 11:51:52', 0);
+INSERT INTO `sys_paper` VALUES (3, 'plaintext(2)', 'plaintext(2).txt', 2, 3, '2023-06-27 11:28:25', '2023-06-27 11:52:28', 0);
 INSERT INTO `sys_paper` VALUES (4, '派克若的论文', '派克若的论文.txt', 1, 1, '2023-06-27 11:46:19', '2023-06-27 11:53:06', 0);
+INSERT INTO `sys_paper` VALUES (5, '优菈的论文(3)', '优菈的论文(3).txt', 5, 3, '2023-06-28 13:19:38', '2023-06-28 13:19:38', 0);
+INSERT INTO `sys_paper` VALUES (6, '柯莱的论文(2)', '柯莱的论文(2).txt', 6, 3, '2023-06-28 13:46:42', '2023-06-28 13:46:42', 0);
 
 -- ----------------------------
 -- Table structure for sys_project
@@ -108,15 +109,17 @@ CREATE TABLE `sys_project`  (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '删除标记（0:不可用 1:可用）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '课题' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '课题' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_project
 -- ----------------------------
-INSERT INTO `sys_project` VALUES (1, '基于神经网络的自然语言处理技术研究', 2, '神经网络、自然语言处理、语言模型、条件生成模型', 0, '2023-06-24 08:41:37', '2023-06-24 08:41:37', 0);
-INSERT INTO `sys_project` VALUES (2, '面向云计算环境的安全性和可靠性研究', 1, '云计算、数据加密、虚拟化安全、多租户隔离', 0, '2023-06-24 08:44:13', '2023-06-24 08:44:13', 0);
-INSERT INTO `sys_project` VALUES (3, '微电子与集成电路设计', 3, '微电子技术、高集成度电路、物联网芯片、射频集成电路', 0, '2023-06-24 08:46:12', '2023-06-24 08:46:12', 0);
-INSERT INTO `sys_project` VALUES (4, '分布式计算的并行化和优化', 1, '并行化、调度、优化', 0, '2023-06-26 17:38:41', '2023-06-26 17:38:41', 0);
+INSERT INTO `sys_project` VALUES (1, '基于神经网络的自然语言处理技术研究', 2, '神经网络、自然语言处理、语言模型、条件生成模型', 2, '2023-06-24 08:41:37', '2023-06-28 10:50:29', 0);
+INSERT INTO `sys_project` VALUES (2, '面向云计算环境的安全性和可靠性研究', 1, '云计算、数据加密、虚拟化安全、多租户隔离', 1, '2023-06-24 08:44:13', '2023-06-28 10:57:24', 0);
+INSERT INTO `sys_project` VALUES (3, '微电子与集成电路设计', 3, '微电子技术、高集成度电路、物联网芯片、射频集成电路', 1, '2023-06-24 08:46:12', '2023-06-28 10:34:38', 0);
+INSERT INTO `sys_project` VALUES (4, '分布式计算的并行化和优化', 1, '并行化、调度、优化', 1, '2023-06-26 17:38:41', '2023-06-28 10:34:39', 0);
+INSERT INTO `sys_project` VALUES (5, '测试选题添加', 1, '详细信息2131', 0, '2023-06-28 10:57:51', '2023-06-28 10:57:57', 1);
+INSERT INTO `sys_project` VALUES (6, '须弥蔷薇的地理分布规律与气候的关系', 5, '须弥、雨林、须弥蔷薇、气候', 2, '2023-06-28 13:42:54', '2023-06-28 13:42:54', 0);
 
 -- ----------------------------
 -- Table structure for sys_role
@@ -189,15 +192,17 @@ CREATE TABLE `sys_student`  (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
   `is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '删除标记（0:不可用 1:可用）',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '学生' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '学生' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_student
 -- ----------------------------
-INSERT INTO `sys_student` VALUES (1, 1, 0, 0, 1, 1, 1, '2023-06-23 22:15:23', '2023-06-25 22:47:48', 0);
-INSERT INTO `sys_student` VALUES (2, 2, 0, 0, 2, 1, 1, '2023-06-23 22:16:35', '2023-06-24 14:23:44', 0);
-INSERT INTO `sys_student` VALUES (3, 3, 0, 0, 3, 2, 2, '2023-06-23 22:16:50', '2023-06-24 14:23:49', 0);
-INSERT INTO `sys_student` VALUES (4, 3, 0, 0, 6, 3, 3, '2023-06-23 22:17:17', '2023-06-24 14:24:01', 0);
+INSERT INTO `sys_student` VALUES (1, 1, 1, 3, 1, 2, 1, '2023-06-23 22:15:23', '2023-06-28 13:21:41', 0);
+INSERT INTO `sys_student` VALUES (2, 1, 1, 4, 2, 2, 1, '2023-06-23 22:16:35', '2023-06-28 13:21:39', 0);
+INSERT INTO `sys_student` VALUES (3, 3, 1, 0, 3, 3, 2, '2023-06-23 22:16:50', '2023-06-28 09:59:00', 0);
+INSERT INTO `sys_student` VALUES (4, 3, 1, 5, 6, 3, 3, '2023-06-23 22:17:17', '2023-06-28 13:33:15', 0);
+INSERT INTO `sys_student` VALUES (5, 1, 1, 5, 11, 2, 4, '2023-06-28 09:58:27', '2023-06-28 13:21:35', 0);
+INSERT INTO `sys_student` VALUES (6, 6, 1, 4, 15, 5, 6, '2023-06-28 13:41:13', '2023-06-28 13:47:27', 0);
 
 -- ----------------------------
 -- Table structure for sys_subject
@@ -237,7 +242,7 @@ CREATE TABLE `sys_teacher`  (
   `is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '删除标记（0:不可用 1:可用）',
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_admin_id`(`user_id` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '用户角色' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb3 COLLATE = utf8mb3_general_ci COMMENT = '用户角色' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_teacher
@@ -245,6 +250,8 @@ CREATE TABLE `sys_teacher`  (
 INSERT INTO `sys_teacher` VALUES (1, 4, '分布式系统与云计算', '教授', '2023-06-23 23:49:33', '2023-06-23 23:49:33', 0);
 INSERT INTO `sys_teacher` VALUES (2, 5, '自然语言处理(NLP)', '副教授', '2023-06-24 08:30:20', '2023-06-24 08:32:21', 0);
 INSERT INTO `sys_teacher` VALUES (3, 7, '微电子与集成电路设计', '副教授', '2023-06-24 08:31:47', '2023-06-24 08:32:22', 0);
+INSERT INTO `sys_teacher` VALUES (4, 10, '璃月刑法', '刑法学教授', '2023-06-28 09:51:53', '2023-06-28 09:52:52', 0);
+INSERT INTO `sys_teacher` VALUES (5, 14, '须弥雨林植物生态', '教授', '2023-06-28 13:40:18', '2023-06-28 13:40:18', 0);
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -263,7 +270,7 @@ CREATE TABLE `sys_user`  (
   `is_deleted` tinyint NOT NULL DEFAULT 0 COMMENT '删除标记（0:不可用 1:可用）',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `idx_username`(`username` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '用户表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_user
@@ -276,5 +283,9 @@ INSERT INTO `sys_user` VALUES (5, 'balzeb', 'e10adc3949ba59abbe56e057f20f883e', 
 INSERT INTO `sys_user` VALUES (6, 'bouyer', 'e10adc3949ba59abbe56e057f20f883e', '布耶尔', '19876543215', '女', 1, '2023-06-22 23:17:29', '2023-06-23 11:06:35', 0);
 INSERT INTO `sys_user` VALUES (7, 'fkarus', 'e10adc3949ba59abbe56e057f20f883e', '芙卡洛斯', '19876543216', '女', 2, '2023-06-23 10:47:59', '2023-06-24 08:35:10', 0);
 INSERT INTO `sys_user` VALUES (8, 'admin', 'e10adc3949ba59abbe56e057f20f883e', '阿德幂', '19876543233', '男', 3, '2023-06-24 08:35:00', '2023-06-24 08:35:00', 0);
+INSERT INTO `sys_user` VALUES (10, 'yanfei', 'e10adc3949ba59abbe56e057f20f883e', '烟绯', '19876543245', '女', 2, '2023-06-28 09:51:53', '2023-06-28 11:49:29', 0);
+INSERT INTO `sys_user` VALUES (11, 'eula', 'e10adc3949ba59abbe56e057f20f883e', '优菈', '19876541127', '女', 1, '2023-06-28 09:58:27', '2023-06-28 11:49:50', 0);
+INSERT INTO `sys_user` VALUES (14, 'tinari', 'e10adc3949ba59abbe56e057f20f883e', '提纳里', '19876543258', '男', 2, '2023-06-28 13:40:18', '2023-06-28 13:40:18', 0);
+INSERT INTO `sys_user` VALUES (15, 'collet', 'e10adc3949ba59abbe56e057f20f883e', '柯莱', '1987654324', '女', 1, '2023-06-28 13:41:13', '2023-06-28 13:41:13', 0);
 
 SET FOREIGN_KEY_CHECKS = 1;
