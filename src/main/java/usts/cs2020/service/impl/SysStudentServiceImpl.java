@@ -55,8 +55,8 @@ public class SysStudentServiceImpl extends ServiceImpl<SysStudentMapper, SysStud
         // 创建user对象
         SysUser user = new SysUser();
         // 填充属性
-        user.setUsername(MD5.encrypt(vo.getPassword()));
-        user.setPassword(vo.getPassword());
+        user.setUsername(vo.getUsername());
+        user.setPassword(MD5.encrypt(vo.getPassword()));
         user.setRealName(vo.getStudentName());
         user.setTel(vo.getTel());
         user.setGender(vo.getGender());
