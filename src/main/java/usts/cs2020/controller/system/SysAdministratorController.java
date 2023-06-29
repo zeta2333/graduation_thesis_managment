@@ -22,6 +22,7 @@ import usts.cs2020.utils.result.Result;
 @Api(tags = "管理员管理")
 @RestController
 @RequestMapping("/system/sysAdministrator")
+@CrossOrigin
 public class SysAdministratorController {
     @Autowired
     private SysAdministratorService service;

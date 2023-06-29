@@ -23,6 +23,7 @@ import usts.cs2020.utils.result.Result;
 @Api(tags = "专业管理")
 @RestController
 @RequestMapping("system/sysSubject")
+@CrossOrigin
 public class SysSubjectController {
     @Autowired
     private SysSubjectService service;

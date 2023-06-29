@@ -28,6 +28,7 @@ import java.util.List;
 @Api(tags = "课题管理")
 @RestController
 @RequestMapping("/system/sysProject")
+@CrossOrigin
 public class SysProjectController {
     @Autowired
     private SysProjectService service;

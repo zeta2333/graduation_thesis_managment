@@ -23,6 +23,7 @@ import usts.cs2020.utils.result.Result;
 @Api(tags = "论文管理")
 @RestController
 @RequestMapping("/system/sysPaper")
+@CrossOrigin
 public class SysPaperController {
     @Autowired
     private SysPaperService service;

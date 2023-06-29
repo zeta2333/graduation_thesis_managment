@@ -24,6 +24,7 @@ import java.util.List;
 @Api(tags = "角色管理")
 @RestController
 @RequestMapping("system/sysRole")
+@CrossOrigin
 public class SysRoleController {
     @Autowired
     private SysRoleService sysRoleService;

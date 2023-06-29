@@ -25,6 +25,7 @@ import usts.cs2020.utils.result.Result;
 @Api(tags = "用户管理")
 @RestController
 @RequestMapping("/system/sysUser")
+@CrossOrigin
 public class SysUserController {
     @Autowired
     private SysUserService service;

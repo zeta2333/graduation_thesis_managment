@@ -27,6 +27,7 @@ import usts.cs2020.utils.result.Result;
 @Api(tags = "教师管理")
 @RestController
 @RequestMapping("/system/sysTeacher")
+@CrossOrigin
 public class SysTeacherController {
     @Autowired
     private SysTeacherService service;

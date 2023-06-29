@@ -24,6 +24,7 @@ import java.util.Map;
 @Api(tags = "后台登录管理")
 @RestController
 @RequestMapping("system/index")
+@CrossOrigin
 public class IndexController {
     @Autowired
     SysUserService userService;
