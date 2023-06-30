@@ -46,17 +46,12 @@ public class CodeGet {
 
         // 5、策略配置
         StrategyConfig strategy = new StrategyConfig();
-
         strategy.setInclude("sys_menu");
-
         strategy.setNaming(NamingStrategy.underline_to_camel);// 数据库表映射到实体的命名策略
-
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);// 数据库表字段映射到实体的命名策略
         strategy.setEntityLombokModel(true); // lombok 模型 @Accessors(chain = true) setter链式操作
-
         strategy.setRestControllerStyle(true); // restful api风格控制器
-        strategy.setControllerMappingHyphenStyle(true); // url中驼峰转连字符
-
+        strategy.setControllerMappingHyphenStyle(false); // url中驼峰转连字符
         mpg.setStrategy(strategy);
 
         // 6、执行

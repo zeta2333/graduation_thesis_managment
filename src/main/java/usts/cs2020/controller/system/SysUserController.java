@@ -62,6 +62,11 @@ public class SysUserController {
     @ApiOperation(value = "更新用户")
     @PutMapping("update")
     public Result updateById(@RequestBody SysUser user) {
+        String password = user.getPassword();
+        // 如果输入的密码为未加密的普通密码，则进行加密
+        if (password.length() != 32) {
+            user.setPassword(MD5.encrypt(password));
+        }
         service.updateById(user);
         return Result.ok();
     }
