@@ -10,7 +10,7 @@
     <!--
     Page<SysStudentResVo> findAndPage(Page<SysStudent> pageParam, SysStudentQueryVo vo);
      -->
-    <select id="findAndPage" resultType="usts.cs2020.model.vo.result.SysStudentResVo">
+    <select id="findAndPage" resultType="SysStudentResVo">
         SELECT
         s.*,
         u1.real_name AS student_name,

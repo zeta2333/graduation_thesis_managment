@@ -20,3 +20,4 @@ mybatis-plus:
     configuration:
         log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 查看日志
     mapper-locations: classpath:usts/cs2020/mapper/xml/*.xml # 配置xml文件的位置
+    type-aliases-package: usts.cs2020.model
