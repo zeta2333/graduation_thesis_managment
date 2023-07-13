@@ -85,11 +85,6 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <!-- &lt;!&ndash; Spring Security依赖 &ndash;&gt; -->
-        <!-- <dependency> -->
-        <!--     <groupId>org.springframework.boot</groupId> -->
-        <!--     <artifactId>spring-boot-starter-security</artifactId> -->
-        <!-- </dependency> -->
     </dependencies>
 
 

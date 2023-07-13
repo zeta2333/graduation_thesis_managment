@@ -1,23 +1,28 @@
 server:
-    port: 6815
+    port: ${app.server-port}
 spring:
     application:
         name: thesis-management
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://localhost:3306/thesis_mgmt?serverTimezone=GMT%2B8&useSSL=false&characterEncoding=utf-8&allowPublicKeyRetrieval=true
+        url: jdbc:mysql://${app.mysql.host}:${app.mysql.port}/thesis_mgmt?serverTimezone=GMT%2B8&useSSL=false&characterEncoding=utf-8&allowPublicKeyRetrieval=true
         username: root
         password: 12345678
     jackson:
         date-format: yyyy-MM-dd HH:mm:ss
         time-zone: GMT+8
     servlet:
-      multipart:
-          max-request-size: 100MB # 总上传的数据大小
-          max-file-size: 100MB # 单个文件的数据大小
+        multipart:
+            max-request-size: 100MB # 总上传的数据大小
+            max-file-size: 100MB # 单个文件的数据大小
 mybatis-plus:
     configuration:
         log-impl: org.apache.ibatis.logging.stdout.StdOutImpl # 查看日志
     mapper-locations: classpath:usts/cs2020/mapper/xml/*.xml # 配置xml文件的位置
     type-aliases-package: usts.cs2020.model
+app:
+    server-port: 6815
+    mysql:
+        host: 127.0.0.1
+        port: 3306
