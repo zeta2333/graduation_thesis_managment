@@ -28,7 +28,7 @@ public class MenuHelper {
         sysMenu.setChildren(new ArrayList<>());
         // 遍历所有菜单，判断每个菜单的parentId和sysMenu的id的关系
         for (SysMenu item : sysMenuList) {
-            if (sysMenu.getId() == item.getParentId()) {
+            if (sysMenu.getId().equals(item.getParentId())) {
                 sysMenu.getChildren().add(getChildren(item, sysMenuList));
             }
         }
